@@ -60,9 +60,9 @@ const QuoteAI: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[60]">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[60]">
       {isOpen ? (
-        <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 w-80 sm:w-96 flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
+        <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 w-[calc(100vw-2rem)] sm:w-96 flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300 max-h-[80vh] sm:max-h-none">
           {/* Header */}
           <div className="bg-blue-600 p-4 text-white flex justify-between items-center">
             <div className="flex items-center gap-2">
@@ -70,11 +70,11 @@ const QuoteAI: React.FC = () => {
                 <ICONS.Sparkles />
               </div>
               <div>
-                <h3 className="font-bold">Sparky Assistant</h3>
-                <p className="text-xs text-blue-100">Always online</p>
+                <h3 className="font-bold text-sm sm:text-base">Sparky Assistant</h3>
+                <p className="text-[10px] sm:text-xs text-blue-100">Always online</p>
               </div>
             </div>
-            <button onClick={() => setIsOpen(false)} className="hover:bg-white/10 p-1 rounded-lg">
+            <button onClick={() => setIsOpen(false)} className="hover:bg-white/10 p-1 rounded-lg transition-colors">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -82,10 +82,10 @@ const QuoteAI: React.FC = () => {
           </div>
 
           {/* Messages */}
-          <div className="h-96 overflow-y-auto p-4 space-y-4 bg-slate-50">
+          <div className="h-80 sm:h-96 overflow-y-auto p-4 space-y-4 bg-slate-50 scrollbar-hide">
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] p-3 rounded-2xl text-sm ${
+                <div className={`max-w-[85%] p-3 rounded-2xl text-xs sm:text-sm ${
                   msg.role === 'user' 
                   ? 'bg-blue-600 text-white rounded-tr-none' 
                   : 'bg-white text-slate-800 border border-slate-200 rounded-tl-none shadow-sm'
@@ -97,9 +97,9 @@ const QuoteAI: React.FC = () => {
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-none shadow-sm flex gap-1">
-                  <div className="w-2 h-2 bg-slate-300 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-slate-300 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                  <div className="w-2 h-2 bg-slate-300 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-slate-300 rounded-full animate-bounce"></div>
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-slate-300 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-slate-300 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
                 </div>
               </div>
             )}
@@ -114,8 +114,8 @@ const QuoteAI: React.FC = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="Ask about pricing or tips..."
-                className="flex-grow px-4 py-2 bg-slate-100 border-none rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition"
+                placeholder="Ask something..."
+                className="flex-grow px-4 py-2 bg-slate-100 border-none rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-sm"
               />
               <button 
                 onClick={handleSend}
@@ -132,12 +132,12 @@ const QuoteAI: React.FC = () => {
       ) : (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-blue-600 text-white p-4 rounded-full shadow-2xl hover:bg-blue-700 hover:scale-110 transition duration-300 group flex items-center gap-2"
+          className="bg-blue-600 text-white p-3 sm:p-4 rounded-full shadow-2xl hover:bg-blue-700 hover:scale-105 transition duration-300 group flex items-center gap-2"
         >
-          <div className="bg-white/20 p-2 rounded-full">
+          <div className="bg-white/20 p-1.5 sm:p-2 rounded-full">
             <ICONS.Sparkles />
           </div>
-          <span className="font-bold pr-2 hidden sm:inline">Ask for Quote</span>
+          <span className="font-bold pr-1 sm:pr-2 hidden xs:inline text-sm sm:text-base">Ask for Quote</span>
         </button>
       )}
     </div>
