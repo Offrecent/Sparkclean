@@ -1,0 +1,7 @@
+{
+  "name": "SparkClean Services",
+  "description": "Professional residential and commercial cleaning services based in Dallas, TX. Reliable, affordable, and eco-friendly solutions for homes and offices.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
